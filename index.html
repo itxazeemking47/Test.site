@@ -1,272 +1,747 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Islamic Organization</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fff;
-        }
-        .container {
-            width: 85%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        .text-center { text-align: center; }
-        .bg-light { background-color: #f9f9f9; }
-        .urdu-text {
-            font-family: 'Noto Nastaliq Urdu', serif;
-            direction: rtl;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* Header & Nav */
-        .main-header {
-            background: #ffffff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1b5e20;
-        }
-        .navbar ul {
-            display: flex;
-            list-style: none;
-        }
-        .navbar ul li a {
-            text-decoration: none;
-            color: #555;
-            padding: 8px 15px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        .navbar ul li a:hover, .navbar ul li a.active {
-            color: #1b5e20;
-        }
-        .donate-btn {
-            background: #1b5e20;
-            color: #fff !important;
-            border-radius: 4px;
-        }
+<title>Islamic Organization</title>
 
-        /* Hero Section */
-        .hero {
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #fff;
-            /* Aap background image ka path yahan change kar sakte hain */
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/bg.PNG') no-repeat center center/cover;
-        }
-        .hero-content h1 { font-size: 45px; margin-bottom: 10px; }
-        .hero-content h2 { font-size: 28px; font-weight: 300; }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 
-        /* Sections */
-        .section { padding: 60px 0; }
-        .section h2 {
-            font-size: 32px;
-            margin-bottom: 30px;
-            color: #1b5e20;
-        }
-        .highlight-text {
-            color: #1b5e20;
-            margin: 20px 0;
-            font-size: 24px;
-        }
+<style>
 
-        /* Leader Card */
-        .leader-card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            display: inline-block;
-            max-width: 600px;
-            margin-top: 20px;
-        }
-        .leader-img img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 20px 0;
-            border: 4px solid #1b5e20;
-        }
+:root{
+--primary:#0d5c3f;
+--secondary:#1d8a5a;
+--gold:#d4af37;
+--dark:#0f172a;
+--light:#ffffff;
+--bg:#f6f8fb;
+}
 
-        /* Timeline Layout */
-        .timeline {
-            border-left: 3px solid #1b5e20;
-            padding-left: 20px;
-            margin-top: 30px;
-        }
-        .timeline-item {
-            margin-bottom: 30px;
-            position: relative;
-        }
-        .timeline-date {
-            font-weight: bold;
-            color: #1b5e20;
-            font-size: 18px;
-        }
-        .timeline-content h3 { font-size: 20px; margin: 5px 0; }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
 
-        /* Footer */
-        .main-footer {
-            background: #111;
-            color: #bbb;
-            padding: 40px 0 20px;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        .footer-grid h3, .footer-grid h4 { color: #fff; margin-bottom: 15px; }
-        .footer-links ul { list-style: none; }
-        .footer-links ul li a { color: #bbb; text-decoration: none; }
-        .footer-links ul li a:hover { color: #fff; }
-        .footer-bottom {
-            margin-top: 40px;
-            border-top: 1px solid #222;
-            padding-top: 20px;
-            font-size: 14px;
-        }
-    </style>
+body{
+font-family:'Poppins',sans-serif;
+background:var(--bg);
+color:#333;
+overflow-x:hidden;
+}
+
+.urdu{
+font-family:'Noto Nastaliq Urdu',serif;
+direction:rtl;
+}
+
+.container{
+width:90%;
+max-width:1300px;
+margin:auto;
+}
+
+/* ======================
+NAVBAR
+====================== */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:999;
+backdrop-filter:blur(15px);
+background:rgba(255,255,255,.9);
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 0;
+}
+
+.logo{
+font-size:28px;
+font-weight:800;
+color:var(--primary);
+}
+
+.logo span{
+color:var(--gold);
+}
+
+.nav-links{
+display:flex;
+gap:20px;
+list-style:none;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#333;
+font-weight:600;
+transition:.3s;
+}
+
+.nav-links a:hover{
+color:var(--primary);
+}
+
+.donate-btn{
+background:linear-gradient(45deg,var(--primary),var(--secondary));
+color:white!important;
+padding:10px 20px;
+border-radius:30px;
+}
+
+/* ======================
+HERO SECTION
+====================== */
+
+.hero{
+min-height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+url('images/bg.PNG');
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+padding:120px 20px 50px;
+}
+
+.hero-content{
+max-width:900px;
+}
+
+.hero-content h1{
+font-size:55px;
+margin-bottom:15px;
+}
+
+.hero-content h2{
+font-size:30px;
+font-weight:300;
+margin-bottom:20px;
+}
+
+.hero-content p{
+font-size:18px;
+line-height:1.8;
+margin-bottom:35px;
+}
+
+.hero-btns{
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:14px 30px;
+border-radius:40px;
+text-decoration:none;
+font-weight:600;
+transition:.4s;
+}
+
+.btn-primary{
+background:var(--gold);
+color:#000;
+}
+
+.btn-primary:hover{
+transform:translateY(-4px);
+}
+
+.btn-outline{
+border:2px solid white;
+color:white;
+}
+
+.btn-outline:hover{
+background:white;
+color:black;
+}
+
+/* ======================
+ABOUT SECTION
+====================== */
+
+.section{
+padding:100px 0;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:60px;
+}
+
+.section-title h2{
+font-size:42px;
+color:var(--primary);
+margin-bottom:10px;
+}
+
+.section-title p{
+color:#777;
+max-width:700px;
+margin:auto;
+}
+
+.about-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:center;
+}
+
+.about-image img{
+width:100%;
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.about-content h3{
+font-size:32px;
+color:var(--primary);
+margin-bottom:20px;
+}
+
+.about-content p{
+line-height:1.9;
+margin-bottom:15px;
+}
+
+.highlight-box{
+background:white;
+padding:25px;
+border-left:5px solid var(--gold);
+border-radius:15px;
+margin-top:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.highlight-box h4{
+color:var(--primary);
+margin-bottom:10px;
+}
+
+/* ======================
+SCROLL ANIMATION
+====================== */
+
+.reveal{
+opacity:0;
+transform:translateY(60px);
+transition:all 1s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+/* ======================
+MOBILE
+====================== */
+
+@media(max-width:900px){
+
+.nav-links{
+display:none;
+}
+
+.hero-content h1{
+font-size:38px;
+}
+
+.hero-content h2{
+font-size:22px;
+}
+
+.about-grid{
+grid-template-columns:1fr;
+}
+
+.section-title h2{
+font-size:32px;
+}
+
+}
+
+</style>
 </head>
 <body>
 
-    <header class="main-header">
-        <div class="container header-flex">
-            <div class="logo urdu-text">مرکز کا نام</div>
-            <nav class="navbar">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#" class="active">About</a></li>
-                    <li><a href="#">Branches</a></li>
-                    <li><a href="#">Media Cell</a></li>
-                    <li><a href="#">Shajra Nasab</a></li>
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Messages</a></li>
-                    <li><a href="#" class="donate-btn">Donate</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<!-- HEADER -->
 
-    <section class="hero">
-        <div class="container hero-content">
-            <h1 class="urdu-text">مرکز کا نام یہاں لکھیں</h1>
-            <h2>Organization Name Here</h2>
-            <p>A historic Islamic organization dedicated to the propagation of the Qur'an and Sunnah</p>
-        </div>
-    </section>
+<header>
 
-    <section class="section intro-section">
-        <div class="container text-center">
-            <h2>Introduction to Markaz</h2>
-            <p>This is a historic and spiritually rooted Islamic organization dedicated to the propagation of the Qur'an and Sunnah across the globe. Founded by the eminent Sufi and scholar:</p>
-            <h3 class="urdu-text highlight-text">بانی کا نام (رَحِمَهُ ٱللَّٰهُ عَلَيْهِ)</h3>
-            <p>The Markaz has remained a beacon of authentic Islamic guidance for generations. From its earliest days, it sparked a transformative Islamic movement through the establishment of madaris and spiritual centers, nurturing faith, knowledge, and character.</p>
-        </div>
-    </section>
+<div class="container navbar">
 
-    <section class="section leadership-section bg-light">
-        <div class="container text-center">
-            <h2>Spiritual Leadership</h2>
-            <div class="leader-card">
-                <h3>Chairman & Spiritual Head</h3>
-                <p class="sub-title">Markaz Title</p>
-                <div class="leader-img">
-                    <img src="images/profile.jpg" alt="Leader Profile">
-                </div>
-                <h3 class="urdu-text">موجودہ رہنما کا نام (دامت برکاتہم العالیۃ)</h3>
-                <h4>Current Gadi Nasheen</h4>
-                <p class="vision">The present spiritual leader has revitalized and expanded the mission of the organization for the contemporary era, combining spiritual depth with modern vision.</p>
-            </div>
-        </div>
-    </section>
+<div class="logo urdu">
+مرکز <span>اسلامی</span>
+</div>
 
-    <section class="section timeline-section">
-        <div class="container">
-            <h2 class="text-center">Historical Timeline</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">Phase 1</div>
-                    <div class="timeline-content">
-                        <h3>Foundation - Central Campus</h3>
-                        <p>Description of the historic foundation, scholarship, and spiritual guidance nurturing generations of seekers of truth.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">Phase 2</div>
-                    <div class="timeline-content">
-                        <h3>Second Institution - Regional Expansion</h3>
-                        <p>Details about expansion, new branches, and serving as a center of Qur'an and Islamic education.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">Phase 3</div>
-                    <div class="timeline-content">
-                        <h3>Modern Campus & Digital Era</h3>
-                        <p>Aligning Islamic education with contemporary needs, introducing structured online learning systems.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<ul class="nav-links">
 
-    <footer class="main-footer">
-        <div class="container footer-grid">
-            <div class="footer-about">
-                <h3 class="urdu-text">مرکز کا نام</h3>
-                <p>Established Year • Location Info</p>
-                <p>Propagation of Qur'an & Sunnah across the globe</p>
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Markaz</a></li>
-                    <li><a href="#">Our Institutes</a></li>
-                    <li><a href="#">News & Updates</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h4>Head Office</h4>
-                <p>Address Details, Pakistan</p>
-                <p>Phone: 0300 0000000</p>
-                <p>Email: info@example.com</p>
-            </div>
-        </div>
-        <div class="footer-bottom text-center">
-            <p>&copy; 2026 Organization Name. All rights reserved.</p>
-        </div>
-    </footer>
+<li><a href="#">Home</a></li>
 
-</body>
-  </html>
-      
+<li><a href="#">About</a></li>
+
+<li><a href="#">Branches</a></li>
+
+<li><a href="#">Media</a></li>
+
+<li><a href="#">News</a></li>
+
+<li><a href="#">Messages</a></li>
+
+<li><a href="#" class="donate-btn">Donate</a></li>
+
+</ul>
+
+</div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content reveal">
+
+<h1 class="urdu">
+مرکزِ فیضانِ قرآن و سنت
+</h1>
+
+<h2>
+Islamic Educational & Spiritual Organization
+</h2>
+
+<p>
+Dedicated to spreading the teachings of the Holy Qur'an and Sunnah,
+providing spiritual guidance, education, and social welfare services
+for communities around the world.
+</p>
+
+<div class="hero-btns">
+
+<a href="#" class="btn btn-primary">
+Explore More
+</a>
+
+<a href="#" class="btn btn-outline">
+Our Mission
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-title reveal">
+
+<h2>About Our Organization</h2>
+
+<p>
+A legacy of knowledge, spirituality, service and leadership dedicated
+to preserving authentic Islamic teachings.
+</p>
+
+</div>
+
+<div class="about-grid">
+
+<div class="about-image reveal">
+
+<img src="images/profile.jpg" alt="Organization">
+
+</div>
+
+<div class="about-content reveal">
+
+<h3>Introduction To Our Markaz</h3>
+
+<p>
+Our organization serves as a center of Islamic learning,
+spiritual growth and community development. Through educational
+institutions, welfare projects and guidance programs, we strive
+to strengthen faith and character in society.
+</p>
+
+<p>
+For generations, our scholars and leaders have worked tirelessly
+to spread the message of peace, knowledge and service while
+maintaining the rich traditions of Islamic scholarship.
+</p>
+
+<div class="highlight-box">
+
+<h4 class="urdu">
+بانیِ مرکز
+</h4>
+
+<p>
+حضرت علامہ و شیخِ طریقت رحمہ اللہ تعالیٰ علیہ
+کی علمی و روحانی خدمات آج بھی اس ادارے کی بنیاد ہیں۔
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section><!-- ===================================
+LEADERSHIP SECTION
+=================================== -->
+
+<section class="section" style="background:#ffffff;">
+
+<div class="container">
+
+<div class="section-title reveal">
+
+<h2>Spiritual Leadership</h2>
+
+<p>
+Guiding the mission of faith, education and service through wisdom,
+vision and dedication.
+</p>
+
+</div>
+
+<div class="leader-card reveal">
+
+<div class="leader-image">
+
+<img src="images/profile.jpg" alt="Leader">
+
+</div>
+
+<div class="leader-content">
+
+<h3 class="urdu">
+حضرت صاحب دامت برکاتہم العالیہ
+</h3>
+
+<h4>Chairman & Spiritual Head</h4>
+
+<p>
+The current spiritual leadership continues the mission of spreading
+Islamic teachings, supporting educational initiatives and guiding
+communities with wisdom and compassion.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================
+TEAM SECTION
+=================================== -->
+
+<section class="section team-section">
+
+<div class="container">
+
+<div class="section-title reveal">
+
+<h2>Operating Team</h2>
+
+<p>
+The dedicated individuals responsible for managing and operating
+the organization.
+</p>
+
+</div>
+
+<div class="team-grid">
+
+<!-- CARD 1 -->
+
+<div class="team-card reveal">
+
+<div class="team-icon">
+👨‍💼
+</div>
+
+<h3>Usman Ali Rizvi</h3>
+
+<span class="team-role">
+Head Of Staff
+</span>
+
+<p>
+Responsible for overall administration,
+management and operational supervision
+of the organization.
+</p>
+
+</div>
+
+<!-- CARD 2 -->
+
+<div class="team-card reveal">
+
+<div class="team-icon">
+✈️
+</div>
+
+<h3>Azeem Aftab</h3>
+
+<span class="team-role">
+Pilot
+</span>
+
+<p>
+Supporting organizational missions,
+travel operations and strategic field activities.
+</p>
+
+</div>
+
+<!-- CARD 3 -->
+
+<div class="team-card reveal">
+
+<div class="team-icon">
+📋
+</div>
+
+<h3>Abdullah</h3>
+
+<span class="team-role">
+Management Team
+</span>
+
+<p>
+Handling coordination, planning,
+communication and daily operational tasks.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================
+STATISTICS SECTION
+=================================== -->
+
+<section class="section stats-section">
+
+<div class="container">
+
+<div class="stats-grid">
+
+<div class="stat-box reveal">
+
+<h2>25+</h2>
+
+<p>Branches</p>
+
+</div>
+
+<div class="stat-box reveal">
+
+<h2>50K+</h2>
+
+<p>Students Guided</p>
+
+</div>
+
+<div class="stat-box reveal">
+
+<h2>100+</h2>
+
+<p>Scholars</p>
+
+</div>
+
+<div class="stat-box reveal">
+
+<h2>30+</h2>
+
+<p>Years Of Service</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================
+TIMELINE SECTION
+=================================== -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-title reveal">
+
+<h2>Historical Journey</h2>
+
+<p>
+Major milestones in the development
+and growth of our organization.
+</p>
+
+</div>
+
+<div class="timeline">
+
+<!-- ITEM -->
+
+<div class="timeline-item reveal">
+
+<div class="timeline-dot"></div>
+
+<div class="timeline-content">
+
+<span class="timeline-year">
+1990
+</span>
+
+<h3>Foundation Of Markaz</h3>
+
+<p>
+The organization was established with a mission
+to spread authentic Islamic education and guidance.
+</p>
+
+</div>
+
+</div>
+
+<!-- ITEM -->
+
+<div class="timeline-item reveal">
+
+<div class="timeline-dot"></div>
+
+<div class="timeline-content">
+
+<span class="timeline-year">
+2000
+</span>
+
+<h3>Expansion Of Educational Institutes</h3>
+
+<p>
+Multiple branches and educational centers
+were established across different regions.
+</p>
+
+</div>
+
+</div>
+
+<!-- ITEM -->
+
+<div class="timeline-item reveal">
+
+<div class="timeline-dot"></div>
+
+<div class="timeline-content">
+
+<span class="timeline-year">
+2010
+</span>
+
+<h3>Community Welfare Programs</h3>
+
+<p>
+Introduction of social welfare projects,
+charity initiatives and support programs.
+</p>
+
+</div>
+
+</div>
+
+<!-- ITEM -->
+
+<div class="timeline-item reveal">
+
+<div class="timeline-dot"></div>
+
+<div class="timeline-content">
+
+<span class="timeline-year">
+2020
+</span>
+
+<h3>Digital Transformation</h3>
+
+<p>
+Online education systems, digital media
+and modern communication platforms launched.
+</p>
+
+</div>
+
+</div>
+
+<!-- ITEM -->
+
+<div class="timeline-item reveal">
+
+<div class="timeline-dot"></div>
+
+<div class="timeline-content">
+
+<span class="timeline-year">
+2026
+</span>
+
+<h3>Global Outreach</h3>
+
+<p>
+Expanding educational and spiritual services
+to a worldwide audience through modern technology.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
