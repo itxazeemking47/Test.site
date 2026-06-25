@@ -1,747 +1,850 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusDigital | Premium Agency Platform</title>
+    <!-- Google Fonts & FontAwesome for Premium Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #07070a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            --accent-glow: rgba(168, 85, 247, 0.15);
+        }
 
-<title>Islamic Organization</title>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
 
-<style>
+        /* Reusable Glassmorphism Base */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-:root{
---primary:#0d5c3f;
---secondary:#1d8a5a;
---gold:#d4af37;
---dark:#0f172a;
---light:#ffffff;
---bg:#f6f8fb;
-}
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(168, 85, 247, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
-}
+        /* Section Setup */
+        section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-body{
-font-family:'Poppins',sans-serif;
-background:var(--bg);
-color:#333;
-overflow-x:hidden;
-}
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            background: linear-gradient(120deg, #fff 30%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-.urdu{
-font-family:'Noto Nastaliq Urdu',serif;
-direction:rtl;
-}
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(7, 7, 10, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-.container{
-width:90%;
-max-width:1300px;
-margin:auto;
-}
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
 
-/* ======================
-NAVBAR
-====================== */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
 
-header{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-z-index:999;
-backdrop-filter:blur(15px);
-background:rgba(255,255,255,.9);
-box-shadow:0 5px 20px rgba(0,0,0,.08);
-}
+        .nav-menu a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
 
-.navbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 0;
-}
+        .nav-menu a:hover {
+            color: #fff;
+        }
 
-.logo{
-font-size:28px;
-font-weight:800;
-color:var(--primary);
-}
+        .nav-auth {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
 
-.logo span{
-color:var(--gold);
-}
+        .btn-login {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
 
-.nav-links{
-display:flex;
-gap:20px;
-list-style:none;
-}
+        .btn-signup {
+            background: var(--primary-gradient);
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-.nav-links a{
-text-decoration:none;
-color:#333;
-font-weight:600;
-transition:.3s;
-}
+        .btn-signup:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.5);
+        }
 
-.nav-links a:hover{
-color:var(--primary);
-}
+        .menu-toggle {
+            display: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
 
-.donate-btn{
-background:linear-gradient(45deg,var(--primary),var(--secondary));
-color:white!important;
-padding:10px 20px;
-border-radius:30px;
-}
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            padding-top: 140px;
+            position: relative;
+        }
 
-/* ======================
-HERO SECTION
-====================== */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(99, 102, 241, 0.15);
+            filter: blur(120px);
+            border-radius: 50%;
+            z-index: -1;
+        }
 
-.hero{
-min-height:100vh;
-background:
-linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
-url('images/bg.PNG');
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-color:white;
-padding:120px 20px 50px;
-}
+        .hero-content {
+            max-width: 55%;
+        }
 
-.hero-content{
-max-width:900px;
-}
+        .hero-headline {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 40%, #c7d2fe 70%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-.hero-content h1{
-font-size:55px;
-margin-bottom:15px;
-}
+        .hero-subheadline {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
 
-.hero-content h2{
-font-size:30px;
-font-weight:300;
-margin-bottom:20px;
-}
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+        }
 
-.hero-content p{
-font-size:18px;
-line-height:1.8;
-margin-bottom:35px;
-}
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: #fff;
+            padding: 16px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.3);
+            transition: all 0.3s;
+        }
 
-.hero-btns{
-display:flex;
-justify-content:center;
-gap:15px;
-flex-wrap:wrap;
-}
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(168, 85, 247, 0.5);
+        }
 
-.btn{
-padding:14px 30px;
-border-radius:40px;
-text-decoration:none;
-font-weight:600;
-transition:.4s;
-}
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 16px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
 
-.btn-primary{
-background:var(--gold);
-color:#000;
-}
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
 
-.btn-primary:hover{
-transform:translateY(-4px);
-}
+        .hero-visual {
+            max-width: 40%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
 
-.btn-outline{
-border:2px solid white;
-color:white;
-}
+        /* Abstract Premium 3D Shape Mockup using pure CSS */
+        .scene-3d {
+            width: 320px;
+            height: 320px;
+            background: var(--primary-gradient);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            box-shadow: 0 30px 60px rgba(99, 102, 241, 0.3), inset 10px 10px 40px rgba(255,255,255,0.2);
+            animation: morphing 10s ease-in-out infinite alternate, floating 6s ease-in-out infinite;
+        }
 
-.btn-outline:hover{
-background:white;
-color:black;
-}
+        @keyframes morphing {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 50% 50% 30% 70% / 50% 60% 40% 63%; }
+            100% { border-radius: 60% 40% 60% 40% / 40% 50% 50% 60%; }
+        }
 
-/* ======================
-ABOUT SECTION
-====================== */
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
 
-.section{
-padding:100px 0;
-}
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
 
-.section-title{
-text-align:center;
-margin-bottom:60px;
-}
+        .service-card {
+            padding: 40px 30px;
+        }
 
-.section-title h2{
-font-size:42px;
-color:var(--primary);
-margin-bottom:10px;
-}
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
 
-.section-title p{
-color:#777;
-max-width:700px;
-margin:auto;
-}
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
 
-.about-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:50px;
-align-items:center;
-}
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
 
-.about-image img{
-width:100%;
-border-radius:20px;
-box-shadow:0 20px 40px rgba(0,0,0,.15);
-}
+        /* Why Choose Us Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
 
-.about-content h3{
-font-size:32px;
-color:var(--primary);
-margin-bottom:20px;
-}
+        .feature-card {
+            padding: 35px 25px;
+            text-align: center;
+        }
 
-.about-content p{
-line-height:1.9;
-margin-bottom:15px;
-}
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.4rem;
+            color: #a855f7;
+        }
 
-.highlight-box{
-background:white;
-padding:25px;
-border-left:5px solid var(--gold);
-border-radius:15px;
-margin-top:20px;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-}
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
 
-.highlight-box h4{
-color:var(--primary);
-margin-bottom:10px;
-}
+        /* How It Works (Steps) */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            position: relative;
+        }
 
-/* ======================
-SCROLL ANIMATION
-====================== */
+        .step-card {
+            padding: 40px 30px;
+            position: relative;
+        }
 
-.reveal{
-opacity:0;
-transform:translateY(60px);
-transition:all 1s ease;
-}
+        .step-num {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3.5rem;
+            font-weight: 900;
+            opacity: 0.08;
+            background: linear-gradient(#fff, transparent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-.reveal.active{
-opacity:1;
-transform:translateY(0);
-}
+        .step-card h3 {
+            font-size: 1.25rem;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
 
-/* ======================
-MOBILE
-====================== */
+        .step-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
 
-@media(max-width:900px){
+        /* Statistics Layout */
+        .stats-section {
+            background: linear-gradient(180deg, transparent, rgba(99, 102, 241, 0.03), transparent);
+        }
 
-.nav-links{
-display:none;
-}
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
 
-.hero-content h1{
-font-size:38px;
-}
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
 
-.hero-content h2{
-font-size:22px;
-}
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 500;
+        }
 
-.about-grid{
-grid-template-columns:1fr;
-}
+        /* Testimonials Layout */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
 
-.section-title h2{
-font-size:32px;
-}
+        .testimonial-card {
+            padding: 35px;
+        }
 
-}
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
 
-</style>
+        .review-text {
+            color: var(--text-main);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .client-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #25262b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            border: 2px solid rgba(168, 85, 247, 0.4);
+        }
+
+        .client-details h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .client-details p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Final CTA Banner */
+        .final-cta {
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-banner {
+            padding: 80px 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+            z-index: -1;
+        }
+
+        .cta-banner h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            max-width: 800px;
+            margin: 0 auto 35px;
+        }
+
+        /* Footer Layout */
+        footer {
+            border-top: 1px solid var(--card-border);
+            padding: 80px 5% 30px;
+            background: #040406;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto 60px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 50px;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            margin-top: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            max-width: 320px;
+        }
+
+        .footer-heading {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-gradient);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 160px;
+                gap: 50px;
+            }
+            .hero-content {
+                max-width: 100%;
+            }
+            .hero-headline {
+                font-size: 3rem;
+            }
+            .hero-ctas {
+                justify-content: center;
+            }
+            .hero-visual {
+                max-width: 100%;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu, .nav-auth {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .cta-banner h2 {
+                font-size: 2rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- HEADER -->
-
-<header>
-
-<div class="container navbar">
-
-<div class="logo urdu">
-مرکز <span>اسلامی</span>
-</div>
-
-<ul class="nav-links">
-
-<li><a href="#">Home</a></li>
-
-<li><a href="#">About</a></li>
-
-<li><a href="#">Branches</a></li>
-
-<li><a href="#">Media</a></li>
-
-<li><a href="#">News</a></li>
-
-<li><a href="#">Messages</a></li>
-
-<li><a href="#" class="donate-btn">Donate</a></li>
-
-</ul>
-
-</div>
-
-</header>
-
-<!-- HERO -->
-
-<section class="hero">
-
-<div class="hero-content reveal">
-
-<h1 class="urdu">
-مرکزِ فیضانِ قرآن و سنت
-</h1>
-
-<h2>
-Islamic Educational & Spiritual Organization
-</h2>
-
-<p>
-Dedicated to spreading the teachings of the Holy Qur'an and Sunnah,
-providing spiritual guidance, education, and social welfare services
-for communities around the world.
-</p>
-
-<div class="hero-btns">
-
-<a href="#" class="btn btn-primary">
-Explore More
-</a>
-
-<a href="#" class="btn btn-outline">
-Our Mission
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ABOUT -->
-
-<section class="section">
-
-<div class="container">
-
-<div class="section-title reveal">
-
-<h2>About Our Organization</h2>
-
-<p>
-A legacy of knowledge, spirituality, service and leadership dedicated
-to preserving authentic Islamic teachings.
-</p>
-
-</div>
-
-<div class="about-grid">
-
-<div class="about-image reveal">
-
-<img src="images/profile.jpg" alt="Organization">
-
-</div>
-
-<div class="about-content reveal">
-
-<h3>Introduction To Our Markaz</h3>
-
-<p>
-Our organization serves as a center of Islamic learning,
-spiritual growth and community development. Through educational
-institutions, welfare projects and guidance programs, we strive
-to strengthen faith and character in society.
-</p>
-
-<p>
-For generations, our scholars and leaders have worked tirelessly
-to spread the message of peace, knowledge and service while
-maintaining the rich traditions of Islamic scholarship.
-</p>
-
-<div class="highlight-box">
-
-<h4 class="urdu">
-بانیِ مرکز
-</h4>
-
-<p>
-حضرت علامہ و شیخِ طریقت رحمہ اللہ تعالیٰ علیہ
-کی علمی و روحانی خدمات آج بھی اس ادارے کی بنیاد ہیں۔
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section><!-- ===================================
-LEADERSHIP SECTION
-=================================== -->
-
-<section class="section" style="background:#ffffff;">
-
-<div class="container">
-
-<div class="section-title reveal">
-
-<h2>Spiritual Leadership</h2>
-
-<p>
-Guiding the mission of faith, education and service through wisdom,
-vision and dedication.
-</p>
-
-</div>
-
-<div class="leader-card reveal">
-
-<div class="leader-image">
-
-<img src="images/profile.jpg" alt="Leader">
-
-</div>
-
-<div class="leader-content">
-
-<h3 class="urdu">
-حضرت صاحب دامت برکاتہم العالیہ
-</h3>
-
-<h4>Chairman & Spiritual Head</h4>
-
-<p>
-The current spiritual leadership continues the mission of spreading
-Islamic teachings, supporting educational initiatives and guiding
-communities with wisdom and compassion.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ===================================
-TEAM SECTION
-=================================== -->
-
-<section class="section team-section">
-
-<div class="container">
-
-<div class="section-title reveal">
-
-<h2>Operating Team</h2>
-
-<p>
-The dedicated individuals responsible for managing and operating
-the organization.
-</p>
-
-</div>
-
-<div class="team-grid">
-
-<!-- CARD 1 -->
-
-<div class="team-card reveal">
-
-<div class="team-icon">
-👨‍💼
-</div>
-
-<h3>Usman Ali Rizvi</h3>
-
-<span class="team-role">
-Head Of Staff
-</span>
-
-<p>
-Responsible for overall administration,
-management and operational supervision
-of the organization.
-</p>
-
-</div>
-
-<!-- CARD 2 -->
-
-<div class="team-card reveal">
-
-<div class="team-icon">
-✈️
-</div>
-
-<h3>Azeem Aftab</h3>
-
-<span class="team-role">
-Pilot
-</span>
-
-<p>
-Supporting organizational missions,
-travel operations and strategic field activities.
-</p>
-
-</div>
-
-<!-- CARD 3 -->
-
-<div class="team-card reveal">
-
-<div class="team-icon">
-📋
-</div>
-
-<h3>Abdullah</h3>
-
-<span class="team-role">
-Management Team
-</span>
-
-<p>
-Handling coordination, planning,
-communication and daily operational tasks.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ===================================
-STATISTICS SECTION
-=================================== -->
-
-<section class="section stats-section">
-
-<div class="container">
-
-<div class="stats-grid">
-
-<div class="stat-box reveal">
-
-<h2>25+</h2>
-
-<p>Branches</p>
-
-</div>
-
-<div class="stat-box reveal">
-
-<h2>50K+</h2>
-
-<p>Students Guided</p>
-
-</div>
-
-<div class="stat-box reveal">
-
-<h2>100+</h2>
-
-<p>Scholars</p>
-
-</div>
-
-<div class="stat-box reveal">
-
-<h2>30+</h2>
-
-<p>Years Of Service</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ===================================
-TIMELINE SECTION
-=================================== -->
-
-<section class="section">
-
-<div class="container">
-
-<div class="section-title reveal">
-
-<h2>Historical Journey</h2>
-
-<p>
-Major milestones in the development
-and growth of our organization.
-</p>
-
-</div>
-
-<div class="timeline">
-
-<!-- ITEM -->
-
-<div class="timeline-item reveal">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-content">
-
-<span class="timeline-year">
-1990
-</span>
-
-<h3>Foundation Of Markaz</h3>
-
-<p>
-The organization was established with a mission
-to spread authentic Islamic education and guidance.
-</p>
-
-</div>
-
-</div>
-
-<!-- ITEM -->
-
-<div class="timeline-item reveal">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-content">
-
-<span class="timeline-year">
-2000
-</span>
-
-<h3>Expansion Of Educational Institutes</h3>
-
-<p>
-Multiple branches and educational centers
-were established across different regions.
-</p>
-
-</div>
-
-</div>
-
-<!-- ITEM -->
-
-<div class="timeline-item reveal">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-content">
-
-<span class="timeline-year">
-2010
-</span>
-
-<h3>Community Welfare Programs</h3>
-
-<p>
-Introduction of social welfare projects,
-charity initiatives and support programs.
-</p>
-
-</div>
-
-</div>
-
-<!-- ITEM -->
-
-<div class="timeline-item reveal">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-content">
-
-<span class="timeline-year">
-2020
-</span>
-
-<h3>Digital Transformation</h3>
-
-<p>
-Online education systems, digital media
-and modern communication platforms launched.
-</p>
-
-</div>
-
-</div>
-
-<!-- ITEM -->
-
-<div class="timeline-item reveal">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-content">
-
-<span class="timeline-year">
-2026
-</span>
-
-<h3>Global Outreach</h3>
-
-<p>
-Expanding educational and spiritual services
-to a worldwide audience through modern technology.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="#" class="logo">NexusDigital</a>
+        <ul class="nav-menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#why-choose-us">Why Choose Us</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#testimonials">Success Stories</a></li>
+        </ul>
+        <div class="nav-auth">
+            <a href="#" class="btn-login">Login</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </div>
+        <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-headline">Scale Your Brand While We Handle Everything.</h1>
+            <p class="hero-subheadline">From content creation and social media management to branding and growth strategies — our expert team helps influencers, businesses, and creators grow faster.</p>
+            <div class="hero-ctas">
+                <a href="#" class="btn-primary">Get Started</a>
+                <a href="#" class="btn-secondary">View Plans</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <!-- Smooth interactive 3D placeholder element -->
+            <div class="scene-3d"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">Our Premium Services</h2>
+        <div class="services-grid">
+            <div class="service-card glass-card">
+                <i class="fa-solid fa-bullhorn service-icon"></i>
+                <h3>Social Media Management</h3>
+                <p>Complete strategic oversight, content distribution pipelines, and community ecosystem health monitoring.</p>
+            </div>
+            <div class="service-card glass-card">
+                <i class="fa-solid fa-video service-icon"></i>
+                <h3>Video Editing</h3>
+                <p>High-retention cinematic sequencing, precise pacing, micro-animations, and audio engineering tailored to your niche.</p>
+            </div>
+            <div class="service-card glass-card">
+                <i class="fa-solid fa-compass-drafting service-icon"></i>
+                <h3>Graphic Design</h3>
+                <p>Futuristic identity design, layout styling frameworks, and premium conversion assets that demand attention.</p>
+            </div>
+            <div class="service-card glass-card">
+                <i class="fa-brands fa-youtube service-icon"></i>
+                <h3>YouTube Management</h3>
+                <p>Click-engineered thumbnails, analytical performance optimization, keyword structures, and playlist configurations.</p>
+            </div>
+            <div class="service-card glass-card">
+                <i class="fa-brands fa-tiktok service-icon"></i>
+                <h3>TikTok Growth</h3>
+                <p>Algorithmic hook optimization, trend-jacking execution, and highly volatile short-form asset scaling setups.</p>
+            </div>
+            <div class="service-card glass-card">
+                <i class="fa-solid fa-chart-line service-icon"></i>
+                <h3>Branding & Marketing</h3>
+                <p>Psychological positioning plans, multi-channel performance advertising, and complete funnel development blueprints.</p>
+            </div>
+            <div class="service-card glass-card">
+                <i class="fa-solid fa-code service-icon"></i>
+                <h3>Website Design & Dev</h3>
+                <p>Hyper-responsive deployment environments built using low-latency clean architecture foundations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-choose-us">
+        <h2 class="section-title">Why Scale with Us</h2>
+        <div class="features-grid">
+            <div class="feature-card glass-card">
+                <div class="feature-icon"><i class="fa-solid fa-user-tie"></i></div>
+                <h3>Professional Team</h3>
+                <p>Vetted specialists managing your architecture daily.</p>
+            </div>
+            <div class="feature-card glass-card">
+                <div class="feature-icon"><i class="fa-solid fa-tags"></i></div>
+                <h3>Affordable Packages</h3>
+                <p>Enterprise-grade output frameworks built for lean businesses.</p>
+            </div>
+            <div class="feature-card glass-card">
+                <div class="feature-icon"><i class="fa-solid fa-headset"></i></div>
+                <h3>Dedicated Managers</h3>
+                <p>Direct communication bridges directly inside your ecosystem.</p>
+            </div>
+            <div class="feature-card glass-card">
+                <div class="feature-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <h3>24/7 Support</h3>
+                <p>Continuous monitoring arrays keep distribution alive constantly.</p>
+            </div>
+            <div class="feature-card glass-card">
+                <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                <h3>Proven Growth</h3>
+                <p>Data-centric execution models built to generate clear metrics.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works">
+        <h2 class="section-title">The Onboarding Blueprint</h2>
+        <div class="steps-container">
+            <div class="step-card glass-card">
+                <span class="step-num">01</span>
+                <i class="fa-solid fa-user-plus service-icon"></i>
+                <h3>Create an Account</h3>
+                <p>Initialize your identity inside our secured project management workspace parameters.</p>
+            </div>
+            <div class="step-card glass-card">
+                <span class="step-num">02</span>
+                <i class="fa-solid fa-credit-card service-icon"></i>
+                <h3>Choose Subscription</h3>
+                <p>Pick a highly clear, unbundled subscription scale matching your current growth projection.</p>
+            </div>
+            <div class="step-card glass-card">
+                <span class="step-num">03</span>
+                <i class="fa-solid fa-users-gear service-icon"></i>
+                <h3>Get Assigned Experts</h3>
+                <p>Instantly tie into a specific operations pod optimized precisely for your unique market vertical.</p>
+            </div>
+            <div class="step-card glass-card">
+                <span class="step-num">04</span>
+                <i class="fa-solid fa-rocket service-icon"></i>
+                <h3>Watch Your Brand Grow</h3>
+                <p>Monitor your performance systems scale as we systematically execute operations flawlessly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Clients Served Globally</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1000+</div>
+                <div class="stat-label">Projects Completed Fully</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Expert Team Members</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Client Satisfaction Rating</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <h2 class="section-title">Success Stories</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card glass-card">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="review-text">"Offloading my channel content pipeline to this network freed up 30 hours weekly. Our retention metric rose instantly by 22%."</p>
+                <div class="client-info">
+                    <div class="client-avatar">MA</div>
+                    <div class="client-details">
+                        <h4>Marcus Aureli</h4>
+                        <p>Tech Creator (1.2M+ Subs)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card glass-card">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="review-text">"The dedicated management pod handled our corporate conversion funnels flawlessly. Our operational scaling costs dropped drastically."</p>
+                <div class="client-info">
+                    <div class="client-avatar">SR</div>
+                    <div class="client-details">
+                        <h4>Sarah Jenkins</h4>
+                        <p>COO, Veloce Enterprises</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="cta-banner glass-card">
+            <h2>Stop Managing Everything Alone. Build Your Brand With a Dedicated Team.</h2>
+            <a href="#" class="btn-primary">Join Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">NexusDigital</a>
+                <p>Deploying premium multi-channel human capital execution frameworks to unlock extreme business scalability limits worldwide.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#why-choose-us">Why Choose Us</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-heading">Company Context</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                    <li><a href="#">Privacy Protocol</a></li>
+                    <li><a href="#">Terms of Scale</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-heading">Contact Information</h4>
+                <ul class="footer-links" style="color: var(--text-muted); font-size: 0.95rem;">
+                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-envelope" style="margin-right: 10px; color: #a855f7;"></i> ops@nexusdigital.io</li>
+                    <li style="margin-bottom: 12px;"><i class="fa-solid fa-location-dot" style="margin-right: 10px; color: #a855f7;"></i> Global Distribution Network</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NexusDigital Platform Inc. All rights reserved.</p>
+            <p>Designed for elite growth deployment infrastructures.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
