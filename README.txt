@@ -1,0 +1,1 @@
+SYED FAIZAN SHAH G - 13TH BIRTHDAY WEBSITE\n\nOpen index.html in any browser to start. The site works offline; an internet connection is only needed for the optional Google Fonts styling. All pages are linked together.\n\nTo publish: upload the folder to GitHub Pages or any static website host.\n

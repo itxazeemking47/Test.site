@@ -1,0 +1,4 @@
+const gift=document.getElementById('gift');
+if(gift){gift.addEventListener('click',()=>{document.getElementById('message').classList.remove('hidden');document.getElementById('giftText').textContent='Surprise! Yeh tumhare liye hai, Faizan 💙';gift.textContent='🎉';burst();});}
+const again=document.getElementById('confetti');if(again)again.addEventListener('click',burst);
+function burst(){const emojis=['✨','🎊','💙','⭐','🎉','🎂'];for(let i=0;i<36;i++){const s=document.createElement('span');s.className='spark';s.textContent=emojis[Math.floor(Math.random()*emojis.length)];s.style.left=(40+Math.random()*20)+'vw';s.style.top=(35+Math.random()*25)+'vh';s.style.setProperty('--x',(Math.random()*500-250)+'px');s.style.setProperty('--y',(Math.random()*-500-80)+'px');document.body.appendChild(s);setTimeout(()=>s.remove(),1300);}}
